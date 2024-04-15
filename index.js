@@ -4,16 +4,20 @@ const resultElement = document.getElementById('result');
 
 function checkPalindrome(inputValue) {
   if (inputValue === '') {
-    return null;
+    return null; // Return null if the input is empty
   }
   const reversedValue = inputValue.split('').reverse().join('');
   return inputValue === reversedValue;
 }
 
 checkButtonElement.addEventListener('click', () => {
-  const inputValue = inputElement.value;
-  const modifiedreversedValue = inputValue.replace(/\s+/g, '');
-  const isPalindrome = checkPalindrome(modifiedreversedValue);
+  // Remove all non-alphanumeric characters and convert to lowercase
+  const modifiedInputValue = inputElement.value
+    .replace(/[^A-Za-z0-9]/g, '')
+    .toLowerCase();
+  console.log(modifiedInputValue); // Log the sanitized input for debugging
+  const isPalindrome = checkPalindrome(modifiedInputValue);
+
   if (isPalindrome) {
     resultElement.textContent = 'Yes, it is a palindrome';
   } else if (isPalindrome === null) {
